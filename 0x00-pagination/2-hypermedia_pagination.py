@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+"""Hypermedia pagination"""
+
 import csv
 import math
 from typing import List, Tuple, Dict, Union
@@ -23,7 +26,9 @@ class Server:
         return self.__dataset
 
     def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
-        """Gets start index and end index
+        """
+        Gets start index and end index
+
         Args:
             page (int): number of page
             page_size (int): size of page
@@ -50,14 +55,9 @@ class Server:
 
         if end > len(data_set):
             return []
-        return [list(data_set[row]) for row in range(start, end)]
+        return [data_set[start:end]]
 
-    def get_hyper(self,
-                  page: int = 1,
-                  page_size: int = 10) -> Dict[str,
-                                               Union[List[List],
-                                                     None,
-                                                     int]]:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """gets hypermedia
         Args:
             page (int, optional): number of page. Defaults to 1.
@@ -66,16 +66,17 @@ class Server:
             Dict[ int, int, List[List], Union[None, int], Union[None, int],
             int]: HATEOAS
         """
-        start, end = self.index_range(page, page_size)
         totalPages = math.ceil(len(self.dataset()) / page_size)
 
-        if page <= start:
+        if page < 1:
             previousPage = None
-        nextPage = page + 1
+        else:
+            previousPage = page - 1
 
-        if page >= end:
+        if page >= totalPages:
             nextPage = None
-        previousPage = page - 1
+        else:
+            nextPage = page + 1
 
         hypermedia = {
             'page_size': page_size,
