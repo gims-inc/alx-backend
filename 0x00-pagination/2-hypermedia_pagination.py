@@ -57,14 +57,13 @@ class Server:
             return []
         return [data_set[start:end]]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, int]:
         """gets hypermedia
         Args:
             page (int, optional): number of page. Defaults to 1.
             page_size (int, optional): number of row in page. Defaults to 10.
         Returns:
-            Dict[ int, int, List[List], Union[None, int], Union[None, int],
-            int]: HATEOAS
+            Dict[ str, int]HATEOAS
         """
         totalPages = math.ceil(len(self.dataset()) / page_size)
 
@@ -81,11 +80,10 @@ class Server:
         hypermedia = {
             'page_size': page_size,
             'page': page,
-            'data': self.get_page(
-                page,
-                page_size),
+            'data': self.get_page(page, page_size),
             'next_page': nextPage,
             'prev_page': previousPage,
-            'total_pages': totalPages}
+            'total_pages': totalPages
+            }
 
         return hypermedia
