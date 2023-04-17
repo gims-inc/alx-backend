@@ -12,6 +12,8 @@
 
  [REST API Design: Filtering, Sorting, and Pagination](https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering-Sorting-and-Pagination/#pagination)
 
+ [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS)
+
  [Hackenoom -API best practices](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9)
 
  [Youtube --](https://www.youtube.com/watch?v=48jwmLuahlU)
