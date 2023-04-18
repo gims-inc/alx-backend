@@ -67,15 +67,8 @@ class Server:
         """
         totalPages = math.ceil(len(self.dataset()) / page_size)
 
-        if page < 1:
-            previousPage = None
-        else:
-            previousPage = page - 1
-
-        if page >= totalPages:
-            nextPage = None
-        else:
-            nextPage = page + 1
+        previousPage = page - 1 if page > 1 else None
+        nextPage = page + 1 if page < totalPages else None
 
         hypermedia = {
             'page_size': page_size,
