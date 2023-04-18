@@ -66,14 +66,14 @@ class Server:
             Dict[ str, int]HATEOAS
         """
         totalPages = math.ceil(len(self.dataset()) / page_size)
-
         previousPage = page - 1 if page > 1 else None
         nextPage = page + 1 if page < totalPages else None
+        data = self.get_page(page, page_size)
 
         hypermedia = {
             'page_size': page_size,
             'page': page,
-            'data': self.get_page(page, page_size),
+            'data':data,
             'next_page': nextPage,
             'prev_page': previousPage,
             'total_pages': totalPages
