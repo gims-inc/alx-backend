@@ -73,7 +73,7 @@ class Server:
         hypermedia = {
             'page_size': page_size,
             'page': page,
-            'data':data,
+            'data': data,
             'next_page': nextPage,
             'prev_page': previousPage,
             'total_pages': totalPages
