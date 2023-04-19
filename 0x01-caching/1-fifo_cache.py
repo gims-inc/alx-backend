@@ -18,9 +18,9 @@ class FIFOCache(BaseCaching):
         if key and item:
             self.cache_data.update({key: item})
             first_key_in = list(self.cache_data.keys())[0]
-            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                self.cache_data.pop(first_key_in)
-                print('DISCARD: {}'.format(first_key_in))
+        if len(self.cache_data) > self.MAX_ITEMS:
+            self.cache_data.pop(first_key_in)
+            print('DISCARD: {}'.format(first_key_in))
 
     def get(self, key):
         """Get an item by key
