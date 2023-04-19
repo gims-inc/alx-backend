@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" LIFO """
+""" LIFO caching implimentation"""
 from base_caching import BaseCaching
 
 
@@ -11,8 +11,6 @@ class LIFOCache(BaseCaching):
     """
 
     def __init__(self):
-        """Initialise
-        """
         super().__init__()
         self.__keys = []
 
