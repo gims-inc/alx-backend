@@ -5,6 +5,9 @@ from base_caching import BaseCaching
 
 class LIFOCache(BaseCaching):
     """LIFO cache class
+
+    Args:
+        BaseCaching (class): Basic class for this class
     """
 
     def __init__(self):
@@ -15,6 +18,10 @@ class LIFOCache(BaseCaching):
 
     def put(self, key, item):
         """Add an item in the cache
+
+        Args:
+            key ([type]): key of dictionary
+            item ([type]): item to insert in dictionary
         """
         if len(self.cache_data) == self.MAX_ITEMS and key not in self.__keys:
             last_key_in = self.__keys.pop()
@@ -26,6 +33,9 @@ class LIFOCache(BaseCaching):
 
     def get(self, key):
         """Get an item by key
+
+        Args:
+            key ([type]): key to search into cache_data
         """
         if key is None or key not in self.cache_data:
             return None
