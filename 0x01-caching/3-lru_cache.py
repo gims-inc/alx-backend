@@ -20,14 +20,13 @@ class LRUCache(BaseCaching):
             key ([type]): key of dictionary
             item ([type]): item to insert in dictionary
         """
-        if key is None or item is None:
-            return None
-        if len(self.cache_data) >= self.MAX_ITEMS:
+        if key and item:
+            self.cache_data.update({key: item})
             lru_key = list(self.cache_data.keys())[0]
+
+        if len(self.cache_data) > self.MAX_ITEMS:
             self.cache_data.pop(lru_key)
             print('DISCARD: {}'.format(lru_key))
-
-        self.cache_data.update({key: item})     
 
     def get(self, key):
         """Get an item by key
