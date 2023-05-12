@@ -5,7 +5,7 @@ Deletion-resilient hypermedia pagination
 
 import csv
 import math
-from typing import List,Dict
+from typing import List, Dict
 
 
 class Server:
@@ -39,40 +39,42 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict[str, str]:
-            """Return a dictionary with the following key-value pairs:
-            index: the current start index of the return page.
-                That is the index of the first item in the current page.
-                For example if requesting page 3 with page_size 20, and
-                no data was removed from the dataset, the current index should be 60.
-            
-            next_index: the next index to query with.
-                That should be the index of the first item after the last item on
-                the current page.
-            
-            page_size: the current page size
-            
-            data: the actual page of the dataset
-            """
-            len_data = len(self.dataset())
-            assert isinstance(index, int) and 1 <index < len_data
+    def get_hyper_index(self, index: int = None,
+                        page_size: int = 10) -> Dict[str, str]:
+        """Return a dictionary with the following key-value pairs:
+        index: the current start index of the return page.
+            That is the index of the first item in the current page.
+            For example if requesting page 3 with page_size 20, and
+            no data was removed from the dataset, the current index
+            should be 60.
 
-            indexed_data = self.indexed_dataset()
+        next_index: the next index to query with.
+            That should be the index of the first item after the last item on
+            the current page.
 
-            start_index = index
-            stop_index = index + page_size - 1
+        page_size: the current page size
 
-            page = []
+        data: the actual page of the dataset
+        """
+        len_data = len(self.dataset())
+        assert isinstance(index, int) and 1 < index < len_data
 
-            for i in  range(start_index,stop_index):
-                 page.append(self.dataset()[i])
-            
-            next_index = stop_index + 1
+        indexed_data = self.indexed_dataset()
 
-            indexed_hypermedia ={
-                 'index' : index,
-                 'data' : page,
-                 'page_size' : page_size,
-                 'next_index' : next_index
-            }
-            return indexed_hypermedia
+        start_index = index
+        stop_index = index + page_size - 1
+
+        page = []
+
+        for i in range(start_index, stop_index):
+            page.append(self.dataset()[i])
+
+        next_index = stop_index + 1
+
+        indexed_hypermedia = {
+            'index': index,
+            'data': page,
+            'page_size': page_size,
+            'next_index': next_index
+        }
+        return indexed_hypermedia
