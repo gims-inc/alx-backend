@@ -4,7 +4,6 @@ const kue = require('kue');
 
 const queue = kue.createQueue();
 const listJobs = [
-  {'0001',age_1'},
   { phoneNumber: '0002', message: 'Message_2'},
   { phoneNumber: '0003', message: 'Message_3'},
   { phoneNumber: '0004', message: 'Message_4'},
